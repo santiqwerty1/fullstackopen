@@ -1,5 +1,5 @@
 const Header = ({ course }) => <h1>{course}</h1>
-const Content = ({ part, exercises }) => <p>{part}: {exercises}</p>
+const Content = ({ part, exercises }) => <p>{part} {exercises}</p>
 const Total = ({ exercises }) => <p>Number of exercises {exercises}</p>
 const App = () => {
   const course = 'Half Stack application development'
