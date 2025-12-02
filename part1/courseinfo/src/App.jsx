@@ -1,15 +1,15 @@
 const Header = ({ name }) => <h1>{name}</h1>;
 
-const Part = ({ name, count }) => (
+const Part = ({ name, exercises }) => (
   <p>
-    {name} {count}
+    {name} {exercises}
   </p>
 );
 
 const Content = ({ parts }) => (
   <div>
-    {parts.map(({ name, count }) => (
-      <Part key={name} name={name} count={count} />
+    {parts.map(({ name, exercises }) => (
+      <Part key={name} name={name} exercises={exercises} />
     ))}
   </div>
 );
@@ -17,7 +17,7 @@ const Content = ({ parts }) => (
 const Total = ({ parts }) => (
   <p>
     Number of exercises{" "}
-    {parts.reduce((sum, { count }) => sum + count, 0)}
+    {parts.reduce((sum, { exercises }) => sum + exercises, 0)}
   </p>
 );
 
