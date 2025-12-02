@@ -1,52 +1,53 @@
-const Header = (props) => <h1>{props.course}</h1>;
-const Part = (props) => (
+const Header = ({ name }) => <h1>{name}</h1>;
+
+const Part = ({ name, count }) => (
   <p>
-    {props.part} {props.exercises}
+    {name} {count}
   </p>
 );
 
-const Content = (props) => {
+const Content = ({ parts }) => (
+  <div>
+    {parts.map(({ name, count }) => (
+      <Part key={name} name={name} count={count} />
+    ))}
+  </div>
+);
+
+const Total = ({ parts }) => (
+  <p>
+    Number of exercises{" "}
+    {parts.reduce((sum, { count }) => sum + count, 0)}
+  </p>
+);
+
+const App = () => {
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
+
   return (
     <div>
-      <Part part={props.part1} exercises={props.exercises1} />
-      <Part part={props.part2} exercises={props.exercises2} />
-      <Part part={props.part3} exercises={props.exercises3} />
+      <Header name={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />
     </div>
   );
 };
 
-const Total = (props) => <p>Number of exercises {props.exercises}</p>;
-const App = () => {
-  const course = 'Half Stack application development'
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
-    }
-  ]
-
-  return (
-    <div>
-      <Head course={course} />
-      <Content
-        part1={parts[0].name}
-        exercises1={parts[0].exercises}
-        part2={parts[1].name}
-        exercises2={parts[1].exercises}
-        part3={parts[2].name}
-        exercises3={parts[2].exercises}
-      />
-      <Total exercises={parts[0].exercises + parts[1].exercises + parts[2].exercises} />
-    </div>
-  )
-}
-
 export default App;
+
