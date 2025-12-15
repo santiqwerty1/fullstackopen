@@ -20,7 +20,6 @@ const App = () => {
    
   const [selected, setSelected] = useState(0)
   const [votes, setVotes] = useState(Array(anecdotes.length).fill(0))
-
   return (
     <div>
       <h1>Anecdote of the day</h1>
